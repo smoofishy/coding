@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'new_page.dart';
 
+//Basic homepage with text and start button.
 class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
