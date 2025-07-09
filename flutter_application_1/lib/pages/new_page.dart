@@ -125,23 +125,32 @@ class _NewPageState extends State<NewPage> {
   //Builds line and defines line style
   //TODO: add horizontal divider inbetween each line
   Widget _buildLine(int index) {
-    return GestureDetector(
-      onTap: () => setState(() => selectedLine = index),
-      onDoubleTap: () => _showPopup(index),
-      child: Container(
-        color: selectedLine == index ? Colors.yellow.shade100 : Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: TextField(
-          controller: controllers[index],
-          autofocus: selectedLine == index,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Enter code here...',
-          ),
-          style: TextStyle(fontSize: 16, color: Colors.black),
+    return Column(
+      children: [
+        GestureDetector(
           onTap: () => setState(() => selectedLine = index),
+          onDoubleTap: () => _showPopup(index),
+          child: Container(
+            color: selectedLine == index ? Colors.yellow.shade100 : Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: TextField(
+              controller: controllers[index],
+               autofocus: selectedLine == index,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter code here...',
+              ),
+              style: TextStyle(fontSize: 16, color: Colors.black),
+              onTap: () => setState(() => selectedLine = index),
+            ),
+          ),
         ),
-      ),
+        const Divider(
+          height: 1,
+          thickness: 1,
+          color: Color.fromARGB(255, 217, 217, 217),
+        ),
+      ],
     );
   }
 
@@ -164,7 +173,12 @@ class _NewPageState extends State<NewPage> {
           foregroundColor: Colors.black,
           elevation: 1,
           automaticallyImplyLeading: false,
-          title: Text('New Page'),
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: 'New Project',
+              border: InputBorder.none,
+            ),
+          ),
           actions: [
             IconButton(icon: Icon(Icons.play_arrow), onPressed: () {}),
             IconButton(icon: Icon(Icons.stop), onPressed: () {}),
